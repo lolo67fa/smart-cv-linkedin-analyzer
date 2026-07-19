@@ -9,7 +9,12 @@ from scoring import keyword_score, text_quality_score, extra_profile_score
 from agents import cv_agent, linkedin_agent, coach_agent, learning_agent, interview_agent
 
 app = Flask(__name__)
-CORS(app)
+
+allowed_origin = os.getenv("ALLOWED_ORIGIN")
+if allowed_origin:
+    CORS(app, origins=[allowed_origin])
+else:
+    CORS(app)
 
 UPLOAD_FOLDER = "uploads"
 ALLOWED_EXTENSIONS = {"pdf", "docx"}
@@ -226,4 +231,6 @@ def agent_interview_evaluate():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    debug_mode = os.environ.get("FLASK_DEBUG", "true").lower() == "true"
+    app.run(host="0.0.0.0", port=port, debug=debug_mode)
