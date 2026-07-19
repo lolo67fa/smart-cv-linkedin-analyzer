@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
+import tempfile
 from werkzeug.utils import secure_filename
 
 from cv_parser import extract_text_from_file
@@ -16,7 +17,7 @@ if allowed_origin:
 else:
     CORS(app)
 
-UPLOAD_FOLDER = "uploads"
+UPLOAD_FOLDER = os.path.join(tempfile.gettempdir(), "smart-cv-analyzer-uploads")
 ALLOWED_EXTENSIONS = {"pdf", "docx"}
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
