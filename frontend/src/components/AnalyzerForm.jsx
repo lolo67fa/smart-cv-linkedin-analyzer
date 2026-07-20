@@ -7,7 +7,7 @@ function AnalyzerForm({
   setCertificates,
   targetRole,
   setTargetRole,
-  roles,
+  roleCategories,
   experience,
   setExperience,
   jobDescription,
@@ -72,10 +72,14 @@ function AnalyzerForm({
             onChange={(e) => setTargetRole(e.target.value)}
           >
             <option value="">Select a target role</option>
-            {roles.map((role) => (
-              <option key={role} value={role}>
-                {role}
-              </option>
+            {roleCategories.map((group) => (
+              <optgroup key={group.category} label={group.category}>
+                {group.roles.map((role) => (
+                  <option key={role} value={role}>
+                    {role}
+                  </option>
+                ))}
+              </optgroup>
             ))}
           </select>
 
