@@ -5,7 +5,7 @@ import tempfile
 from werkzeug.utils import secure_filename
 
 from cv_parser import extract_text_from_file
-from role_data import get_role_list
+from role_data import get_role_categories
 from scoring import keyword_score, text_quality_score, extra_profile_score
 from agents import cv_agent, linkedin_agent, coach_agent, learning_agent, interview_agent
 
@@ -34,7 +34,7 @@ def home():
 
 @app.route("/roles", methods=["GET"])
 def roles():
-    return jsonify({"roles": get_role_list()})
+    return jsonify({"roles": get_role_categories()})
 
 
 @app.route("/analyze", methods=["POST"])
