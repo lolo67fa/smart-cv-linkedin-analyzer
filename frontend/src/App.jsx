@@ -11,7 +11,7 @@ import HowItWorks from "./components/HowItWorks";
 import CareerValue from "./components/CareerValue";
 
 function App() {
-  const [roleCategories, setRoleCategories] = useState([]);
+  const [roles, setRoles] = useState([]);
 
   const [cvFile, setCvFile] = useState(null);
   const [linkedinText, setLinkedinText] = useState("");
@@ -26,8 +26,8 @@ function App() {
 
   useEffect(() => {
     fetchRoles()
-      .then(setRoleCategories)
-      .catch(() => setRoleCategories([]));
+      .then(setRoles)
+      .catch(() => setRoles([]));
   }, []);
 
   const goToAnalyzer = () => {
@@ -85,7 +85,7 @@ function App() {
         setCertificates={setCertificates}
         targetRole={targetRole}
         setTargetRole={setTargetRole}
-        roleCategories={roleCategories}
+        roles={roles}
         experience={experience}
         setExperience={setExperience}
         jobDescription={jobDescription}
